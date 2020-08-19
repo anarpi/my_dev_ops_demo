@@ -1,0 +1,26 @@
+{
+  "extends": ["strongloop", "plugin:promise/recommended"],
+  "env": {
+      "es6": true,
+      "browser": true,
+      "node": true,
+      "mocha":true,
+      "jest": true
+  },
+  "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+  },
+  "rules": {
+      "semi":["error", "never"],
+      "camelcase":"off",
+      "comma-dangle":"off",
+      "strict": [1, "never"],
+      "indent":["error", 2],
+      "max-len": ["error", { "code": 140 }],
+      "prefer-const": ["error", {
+          "destructuring": "any",
+          "ignoreReadBeforeAssign": false
+      }]
+  }
+}

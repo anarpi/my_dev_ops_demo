@@ -1,0 +1,6 @@
+version: "2"
+services: 
+  matrix:
+    container_name: mymatrix
+    restart: always
+    build: .

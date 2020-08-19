@@ -1,0 +1,39 @@
+{
+  "name": "my_awesome_devops_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node app.js",
+    "lint": "./node_modules/.bin/eslint . --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.1",
+    "eslint-cli": "^1.1.1",
+    "express": "^4.17.1",
+    "express-prometheus-middleware": "^0.9.6",
+    "logstash": "^3.0.0",
+    "prom-client": "^12.0.0",
+    "winston": "^3.3.3",
+    "winston-elasticsearch": "^0.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-strongloop": "^2.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "jest": "^24.9.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/?(*.)+(spec|test).js?(x)"
+    ],
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}

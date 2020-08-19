@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: prometheus
+  name: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - image: prom/prometheus:v2.20.0
+          name: prometheus
+          ports:
+            - containerPort: 9090
+              name: prometheus
+          volumeMounts:
+            - mountPath: /prometheus
+              name: var-lib-prometheus
+            - name: prometheus-config-volume
+              mountPath: /etc/prometheus/prometheus.yml
+              subPath: prometheus.yml
+      volumes:
+        - name: prometheus-config-volume
+          configMap:
+            name: prometheus-config
+        - name: var-lib-prometheus
+          persistentVolumeClaim:
+            claimName: prometheus
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  labels:
+    app: prometheus
+    project: anardemo
+spec:
+  type: NodePort
+  selector:
+    app: prometheus
+  ports:
+    - port: 9090
+      targetPort: 9090
+      protocol: TCP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+
+    global:
+      scrape_interval:     5s
+      external_labels:
+        monitor: 'eks-dev-monitor'
+
+    scrape_configs:
+
+      - job_name: 'prometheus'
+        scrape_interval: 5s
+        static_configs:
+          - targets: ['localhost:9090']
+
+      - job_name: 'matrixes'
+        static_configs:
+          - targets: ['matrixes:3000']
+        metrics_path: 'api/v1/metrics'

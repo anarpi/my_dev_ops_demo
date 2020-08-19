@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: matrixes
+  labels:
+    app: matrixes
+    service: matrixes
+    project: anardemo
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: 3000
+      name: http
+  selector:
+    app: matrixes
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: anarpi-matrixes
+  labels:
+    account: matrixes
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: matrixes-v1
+  labels:
+    app: matrixes
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: matrixes
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: matrixes
+        version: v1
+    spec:
+      serviceAccountName: anarpi-matrixes
+      containers:
+        - name: matrixes
+          image: docker.io/anarpi/matrixes:1.0.7
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
