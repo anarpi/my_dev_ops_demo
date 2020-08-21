@@ -71,7 +71,8 @@ app.get('/api/v1/matrix', (request, response) => {
   counter.inc()
 
   esLogger.info('Random matrix: ', generatedMatrix)
-  logstashLogger.info(`Random matrix avg: ${avgOfMatrix(generatedMatrix)}`)
+  logstashLogger.info({msg: 'Random matrix avg:', avg: avgOfMatrix(generatedMatrix)})
+  // logstashLogger.info(`Random matrix avg: ${avgOfMatrix(generatedMatrix)}`)
 
   return response.status(200).send(generatedMatrix)
 })
