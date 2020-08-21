@@ -16,7 +16,7 @@
     "eslint-cli": "^1.1.1",
     "express": "^4.17.1",
     "express-prometheus-middleware": "^0.9.6",
-    "logstash": "^3.0.0",
+    "logstash-tcp-wins": "^1.0.18",
     "prom-client": "^12.0.0",
     "winston": "^3.3.3",
     "winston-elasticsearch": "^0.7.0"
