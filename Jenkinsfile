@@ -9,6 +9,14 @@ pipeline {
                 sh 'npm install && npm run lint'
             }
         }
+        stage('Test'){
+            agent {
+                label 'anar_gep'
+            }
+            steps{
+                sh 'npm run test'
+            }
+        }
         stage('Build'){
             agent {
                 label 'anar_gep'
