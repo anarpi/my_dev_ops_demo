@@ -1,6 +1,14 @@
 pipeline {
     agent none
     stages {
+        stage('Lint'){
+            agent {
+                label 'anar_gep'
+            }
+            steps{
+                sh 'npm install && npm run lint'
+            }
+        }
         stage('Build'){
             agent {
                 label 'anar_gep'

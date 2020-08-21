@@ -42,7 +42,7 @@ const avgOfMatrix = (matrix = [0]) => {
       sum += matrix[i][j]
     }
   }
-  return sum / matrix.length
+  return sum / (matrix.length * matrix.length)
 }
 
 app.use(
@@ -70,9 +70,8 @@ app.get('/api/v1/matrix', (request, response) => {
 
   counter.inc()
 
-  esLogger.info('Random matrix: ', generatedMatrix)
+  esLogger.info('Random matrix: ', {generatedMatrix})
   logstashLogger.info({msg: 'Random matrix avg:', avg: avgOfMatrix(generatedMatrix)})
-  // logstashLogger.info(`Random matrix avg: ${avgOfMatrix(generatedMatrix)}`)
 
   return response.status(200).send(generatedMatrix)
 })
@@ -110,4 +109,3 @@ const logstashLogger = winston.createLogger({
   transports: [new Logstash({level: 'info', port: 5000, host: 'localhost'})],
 })
 
-// const logstashLogger = Logstash('http://elk.apps.okd.codespring.ro/', ['matrixtag'], 'info')
