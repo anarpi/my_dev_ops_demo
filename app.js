@@ -71,7 +71,7 @@ app.get('/api/v1/matrix', (request, response) => {
   counter.inc()
 
   esLogger.info('Random matrix: ', {generatedMatrix})
-  logstashLogger.info({msg: 'Random matrix avg:', avg: avgOfMatrix(generatedMatrix)})
+  // logstashLogger.info({msg: 'Random matrix avg:', avg: avgOfMatrix(generatedMatrix)})
 
   return response.status(200).send(generatedMatrix)
 })
@@ -90,7 +90,7 @@ app.listen(port, function() {
 
 const winston = require('winston')
 const Elasticsearch = require('winston-elasticsearch')
-const Logstash = require('logstash-tcp-wins')
+// const Logstash = require('logstash-tcp-wins')
 
 const esTransportsOpts = {
   level: 'info',
@@ -105,7 +105,7 @@ const esLogger = winston.createLogger({
   transports: [new Elasticsearch(esTransportsOpts)],
 })
 
-const logstashLogger = winston.createLogger({
-  transports: [new Logstash({level: 'info', port: 5000, host: 'localhost'})],
-})
+// const logstashLogger = winston.createLogger({
+//   transports: [new Logstash({level: 'info', port: 5000, host: 'localhost'})],
+// })
 
