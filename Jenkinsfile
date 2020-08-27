@@ -38,23 +38,23 @@ pipeline {
                 // sh 'make docker-build'
             }
         }
-        // stage('Docker push'){
-        //     agent {
-        //         label 'anar_gep'
-        //     }
-        //     steps{
-        //         sh "docker push anarpi/matrixes:${VERSION}"
-        //         // sh 'make docker-push'
-        //     }
-        // }
-        // stage('Deploy generator'){
-        //     agent {
-        //         label 'anar_gep'
-        //     }
-        //     steps{
-        //         sh "oc apply -f ./kube/matrixes.yaml"
-        //         // sh 'make deploy-generator'
-        //     }
-        // }
+        stage('Docker push'){
+            agent {
+                label 'anar_gep'
+            }
+            steps{
+                sh "docker push anarpi/matrixes:${VERSION}"
+                // sh 'make docker-push'
+            }
+        }
+        stage('Deploy generator'){
+            agent {
+                label 'anar_gep'
+            }
+            steps{
+                sh "oc apply -f ./kube/matrixes.yaml"
+                // sh 'make deploy-generator'
+            }
+        }
     }
 }
