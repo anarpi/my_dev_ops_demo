@@ -1,7 +1,7 @@
 pipeline {
     agent none
     environment {
-        VERSION = 1.0.8
+        VERSION = '1.0.8'
     }
     stages {
         stage('Lint'){
@@ -29,15 +29,15 @@ pipeline {
         //         // sh 'make build'
         //     }
         // }
-        // stage('Docker Build'){
-        //     agent {
-        //         label 'anar_gep'
-        //     }
-        //     steps{
-        //         sh "docker build --tag anarpi/matrixes:${VERSION} ."
-        //         // sh 'make docker-build'
-        //     }
-        // }
+        stage('Docker Build'){
+            agent {
+                label 'anar_gep'
+            }
+            steps{
+                sh "docker build --tag anarpi/matrixes:${VERSION} ."
+                // sh 'make docker-build'
+            }
+        }
         // stage('Docker push'){
         //     agent {
         //         label 'anar_gep'
