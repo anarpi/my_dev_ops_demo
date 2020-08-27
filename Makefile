@@ -1,5 +1,12 @@
 .PHONY: docker-build
 
+include .env
+
+VARS:=$(shell sed -ne 's/ *\#.*$$//; /./ s/=.*$$// p' .env )
+
+test:
+	echo VARS
+
 tag ?= latest
 docker-build:
 	echo 'Build docker image'

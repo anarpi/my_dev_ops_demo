@@ -44,7 +44,7 @@ spec:
       serviceAccountName: anarpi-matrixes
       containers:
         - name: matrixes
-          image: docker.io/anarpi/matrixes:1.0.7
+          image: docker.io/anarpi/matrixes:1.0.8
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
