@@ -1,8 +1,8 @@
 pipeline {
     agent none
-    // environment {
-    //     VERSION = 1.0.8
-    // }
+    environment {
+        VERSION = 1.0.8
+    }
     stages {
         stage('Lint'){
             agent {
