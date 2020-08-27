@@ -35,15 +35,15 @@ const generateRandomMatrix = (size = 3) => {
   return matrix
 }
 
-const avgOfMatrix = (matrix = [0]) => {
-  var sum = 0
-  for (var i = 0; i < matrix.length; i++) {
-    for (var j = 0; j < matrix.length; j++) {
-      sum += matrix[i][j]
-    }
-  }
-  return sum / (matrix.length * matrix.length)
-}
+// const avgOfMatrix = (matrix = [0]) => {
+//   var sum = 0
+//   for (var i = 0; i < matrix.length; i++) {
+//     for (var j = 0; j < matrix.length; j++) {
+//       sum += matrix[i][j]
+//     }
+//   }
+//   return sum / (matrix.length * matrix.length)
+// }
 
 app.use(
   function(req, res, next) {
